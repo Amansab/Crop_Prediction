@@ -1,0 +1,183 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>AgroPlus</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script src="{% static 'js/jquery-1.7.1.min.js' %}"></script>
+<script src="{% static 'js/superfish.js' %}"></script>
+<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'js/tms-0.4.1.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
+{% for i in messages %}
+<script>alert("{{i}}")</script>
+{% endfor %}
+<style>
+    /* Style inputs */
+    input[type=text],input[type=password], select {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px  #7587ea;
+    border-radius: 4px;
+    border-inline-start-color: #7587ea;
+  
+    box-sizing: border-box;
+  }
+  input[type='password'] {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      letter-spacing: 0.125em;
+  }
+  /* Style the submit button */
+  input[type=submit] {
+    width: 25%;
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Add a background color to the submit button on mouse-over */
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  #country{
+    width:70%;
+  padding:20px;
+  height: 10px;
+  overflow: scroll;
+  overflow-y: auto;
+  }
+  </style>
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<link rel="stylesheet" href="css/ie.css"> 
+<![endif]-->
+</head>
+<body>
+<div class="main-bg">
+  <!-- Header -->
+  <header>
+    <div class="inner">
+      <h1 class="logo"><a href="index.html">AgroPlus - Agriculture Website</a></h1>
+      <nav>
+        <ul class="sf-menu">
+          <li class="current"><a href="index.html">home</a></li>
+          {% if user.is_authenticated %}
+          <li> <a href="#">Welcome {{ user.first_name }} </a>
+            <li> <a href="test.html">Test</a>
+          
+          <li><a href="contacts.html">contacts</a></li>
+          <li><a href="logout">Logout</a></li>
+          
+          
+            {% else %}
+          <li> <a href="register.html">Register</a>
+          
+          </li>
+          <li><a href="login.html" >Login</a></li>
+          <li><a href="pricing.html">Manual</a></li>
+          <li><a href="contacts.html">contacts</a></li>
+          
+        </ul>
+        {% endif %}
+      </nav>
+      <div class="clear"></div>
+    </div>
+    <div class="slider-container">
+      <div class="mp-slider">
+        <ul class="items">
+          <li><img src="images/slide-1.jpg" alt="">
+            <div class="banner mp-ban-1" style="font-family:'Arial, Helvetica, sans-serif';
+            "><span class="row-1">putting our</span><span class="row-2">heart &amp; soul</span><span class="row-3">into the field</span></div>
+          </li>
+          <li><img src="images/slide-2.jpg" alt="">
+            <div class="banner mp-ban-2" style="font-family:'Arial, Helvetica, sans-serif';
+            "><span class="row-1">we have a strong</span><span class="row-2">agriculture</span><span class="row-3">heritage</span></div>
+          </li>
+          <li><img src="images/slide-3.jpg" alt="">
+            <div class="banner mp-ban-3" style="font-family:'Arial, Helvetica, sans-serif';
+            "><span class="row-1">growing clean</span><span class="row-2">and full of health</span><span class="row-3">products</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <a href="#" class="mp-prev"></a> <a href="#" class="mp-next"></a> </header>
+    <br><br><br><br>
+    
+    <form  method="POST" align="center" action="result">
+      {% csrf_token %}
+      <label for="lname"style="position: relative; right:500px;" ><font style="font-size:large; font-family: 'Times New Roman', Times, serif; color: white;">Geographic Location</font></label><br>
+      <input type="text"  name="location" placeholder="Geographic Location"  required="true"><br><br>
+      <label for="lname"style="position: relative; right:500px;" ><font style="font-size:large; font-family: 'Times New Roman', Times, serif; color: white;">Nitrogen </font></label><br>
+      <input type="text"  name="N" placeholder="Ntirogen Percentage"  required="true"><br><br>
+      <label for="lname"style="position: relative; right:500px;" ><font style="font-size:large; font-family: 'Times New Roman', Times, serif; color: white;">Phosporous</font></label><br>
+      <input type="text"  name="p" placeholder="Phosporous Percentage"  required="true"><br><br>
+      <label for="lname"style="position: relative; right:500px;" ><font style="font-size:large; font-family: 'Times New Roman', Times, serif; color: white;">Potassium</font></label><br>
+      <input type="text"  name="k" placeholder="Pottasium Percentage"  required="true"><br><br>
+      <label for="lname"style="position: relative; right:500px;" ><font style="font-size:large; font-family: 'Times New Roman', Times, serif; color: white;">Temperature</font></label><br>
+      <input type="text"  name="temperature" placeholder="Temperature in *C"  required="true"><br><br>
+      <label for="lname"style="position: relative; right:500px;" ><font style="font-size:large; font-family: 'Times New Roman', Times, serif; color: white;">pH</font></label><br>
+      <input type="text"  name="ph" placeholder="pH 1 to 10"  required="true"><br><br>
+      <label for="lname"style="position: relative; right:500px;" ><font style="font-size:large; font-family: 'Times New Roman', Times, serif; color: white;">Humidity</font></label><br>
+      <input type="text"  name="humidity" placeholder="In cm"  required="true"><br><br>
+      <label for="lname"style="position: relative; right:500px;" ><font style="font-size:large; font-family: 'Times New Roman', Times, serif; color: white;">Rainfall</font></label><br>
+      <input type="text"  name="rain" placeholder="Geographic Location"  required="true"><br><br>
+      <input type="submit">
+      
+    </form>
+    <footer>
+        <div class="container_24">
+          <div class="wrapper">
+            <div class="grid_24 footer-bg">
+              <div class="hr-border-2"></div>
+              <div class="wrapper">
+                <div class="grid_7 suffix_1 prefix_1 alpha">
+                  <div class="copyright"> &copy; 2023 <strong class="footer-logo">AgroPlus</strong>
+                    <div>Agroplus Website  <a target="_blank" href="#">www.agroplus.com</a></div>
+                  </div>
+                </div>
+                <div class="grid_4">
+                  <h5 class="heading-1">Archives:</h5>
+                  <ul class="footer-list">
+                    <li><a href="#">October 2012</a></li>
+                    <li><a href="#">September 2012</a></li>
+                    <li><a href="#">August 2012</a></li>
+                    <li><a href="#">July 2012</a></li>
+                  </ul>
+                </div>
+                <div class="grid_4">
+                  <h5 class="heading-1">Links:</h5>
+                  <ul class="footer-list">
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Plugins</a></li>
+                    <li><a href="#">Suggest Ideas</a></li>
+                    <li><a href="#">Support Forum</a></li>
+                  </ul>
+                </div>
+                <div class="grid_4">
+                  <h5 class="heading-1">Support:</h5>
+                  <ul class="footer-list">
+                    <li><a href="#">Special Proposition</a></li>
+                    <li><a href="contacts.html">Free Phone</a></li>
+                    <li><a href="#">Solutions</a></li>
+                  </ul>
+                </div>
+                <div class="grid_2 suffix_1 omega">
+                  <ul class="social-list">
+                    <li><a href="#"><img src="{% static 'images/social-icon-1.png' %}" alt=""></a></li>
+                    <li><a href="#"><img src="{% static 'images/social-icon-2.png' %}" alt=""></a></li>
+                    <li><a href="#"><img src="{% static 'images/social-icon-3.png' %}" alt=""></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>

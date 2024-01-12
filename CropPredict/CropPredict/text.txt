@@ -1,0 +1,6 @@
+{%extends "nav.html" %}??{%include "nav.html"}
+{%block content%}
+{% end block%}
+
+# footer part
+foooter.html{% include "footer.html" %}
